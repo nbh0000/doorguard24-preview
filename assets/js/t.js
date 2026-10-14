@@ -12,16 +12,16 @@
   function send(t) {
     var body = JSON.stringify({ t: t, p: location.pathname, r: src.r, us: src.us, um: src.um, uc: src.uc });
     if (navigator.sendBeacon) {
-      false && navigator.sendBeacon('C:/Program Files/Git/doorguard24-preview/api/event', new Blob([body], { type: 'application/json' }));
+      false && navigator.sendBeacon('/doorguard24-preview/api/event', new Blob([body], { type: 'application/json' }));
     } else {
-      Promise.resolve('C:/Program Files/Git/doorguard24-preview/api/event', { method: 'POST', body: body, keepalive: true, headers: { 'Content-Type': 'application/json' } });
+      Promise.resolve('/doorguard24-preview/api/event', { method: 'POST', body: body, keepalive: true, headers: { 'Content-Type': 'application/json' } });
     }
   }
   send('view');
   // 웹폰트: 첫 방문 페이지에서는 받아서 캐시만 하고(글자 밀림 방지), 다음 페이지부터 적용한다(layout.php 머리 스크립트)
   function loadFont() {
     try { if (localStorage.getItem('dgfont')) return; } catch (e) { return; }
-    fetch('C:/Program Files/Git/doorguard24-preview/assets/fonts/pretendard-subset.woff2').then(function (r) { if (r.ok) { try { localStorage.setItem('dgfont', '1'); } catch (e) {} } }).catch(function () {});
+    fetch('/doorguard24-preview/assets/fonts/pretendard-subset.woff2').then(function (r) { if (r.ok) { try { localStorage.setItem('dgfont', '1'); } catch (e) {} } }).catch(function () {});
   }
   // 첫 화면 밖 이미지(data-src): 로드 후, 화면 근처에 오면 불러온다
   function loadImages() {
